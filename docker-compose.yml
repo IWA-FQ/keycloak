@@ -1,0 +1,27 @@
+version: '3,9'
+
+
+services:
+  keycloak:
+    container_name: polylink-keycloak
+    image: jboss/keycloak
+    networks:
+      - polylink-network
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: postgres
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_PORT: 5432
+      KEYCLOAK_USER: root
+      KEYCLOAK_PASSWORD: password
+      PORT: 8080
+    ports:
+      - 8080:8080
+
+networks:
+  polylink-network:
+    name: polylink-network
+    external: true
+
